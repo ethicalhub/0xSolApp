@@ -1,50 +1,108 @@
-# Welcome to your Expo app 👋
+# 0xSol App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A minimal React Native + Solana Web3 mobile app — built in public.
 
-## Get started
+> Learn → Build → Ship → Repeat
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## About
 
-2. Start the app
+0xSol is a mobile app for exploring Solana wallets — starting simple and growing one feature at a time.
 
-   ```bash
-   npx expo start
-   ```
+The goal isn't to build the next big thing overnight. It's to learn by doing, ship working code consistently, and document the process publicly.
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Why This Project
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Most Web3 tutorials are either too shallow or too complex. This is a ground-up build — starting from zero, adding real Solana functionality step by step, and sharing everything along the way.
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## Build in Public Log
 
-```bash
-npm run reset-project
+| Day | Topic                    | Notes                            |
+| --- | ------------------------ | -------------------------------- |
+| 01  | Project setup + Basic UI | [docs/day-01.md](docs/day-01.md) |
+
+---
+
+## Tech Stack
+
+| Layer      | Technology                     |
+| ---------- | ------------------------------ |
+| Framework  | React Native (Expo)            |
+| Language   | TypeScript                     |
+| State      | Zustand                        |
+| Blockchain | Solana Web3.js _(coming soon)_ |
+| Navigation | Expo Router                    |
+
+---
+
+## Architecture
+
+```
+UI → Input → Service Layer (RPC) → Data Processing → UI Rendering
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Simple, layered, and easy to extend.
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
+## Current Features
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Enter a Solana wallet address via a text input
+- Clean UI built with `SafeAreaView`, `ScrollView`, and `TextInput`
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+## Getting Started
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+**Prerequisites:** Node.js, npm, and Expo CLI installed.
+
+```bash
+# Clone the repo
+git clone https://github.com/ethicalhub/0xSolApp.git
+cd 0xSolApp
+
+# Install dependencies
+npm install
+
+# Start the development server
+npx expo start
+```
+
+Then open the app in:
+
+- **Expo Go** (scan the QR code)
+- **Android emulator** — press `a`
+- **iOS simulator** — press `i`
+
+---
+
+## Roadmap
+
+- [x] Project setup
+- [x] Basic UI with wallet input
+- [x] Fetch wallet balance via RPC
+
+---
+
+## Notes
+
+- RPC endpoint is configured via `app.config.ts` using `SOL_RPC_URL`
+- This project uses Expo Router for file-based navigation
+- State management is handled by Zustand
+
+---
+
+## Follow Along
+
+This is a build-in-public project. Progress is documented in the [docs/](docs/) folder, one day at a time.
+
+---
+
+## Support
+
+If you find this useful, a star on GitHub goes a long way.
