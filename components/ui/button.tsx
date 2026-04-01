@@ -8,9 +8,10 @@ import {
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
+  textStyle?: object;
 }
 
-export function Button({ title, disabled, style, ...rest }: ButtonProps) {
+export function Button({ title, disabled, style, textStyle, ...rest }: ButtonProps) {
   return (
     <TouchableOpacity
       style={[s.btn, disabled && s.disabled, style]}
@@ -18,7 +19,7 @@ export function Button({ title, disabled, style, ...rest }: ButtonProps) {
       activeOpacity={0.8}
       {...rest}
     >
-      <Text style={[s.label, disabled && s.labelDisabled]}>{title}</Text>
+      <Text style={[s.label, disabled && s.labelDisabled, textStyle]}>{title}</Text>
     </TouchableOpacity>
   );
 }

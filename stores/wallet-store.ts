@@ -1,6 +1,7 @@
 import { Alert } from "react-native";
 import { create } from "zustand";
 import { getBalance, getTokens, getTxns } from "@/services/solana";
+import { WSOL_MINT } from "@/constants/solana";
 import type { Token, Transaction } from "@/types/solana";
 
 interface WalletState {
@@ -36,7 +37,9 @@ export const useWalletStore = create<WalletState>((set, get) => ({
         getTokens(addr),
         getTxns(addr),
       ]);
-      set({ balance, tokens, txns });
+      const solToken: Token = { mint: WSOL_MINT, amount: balance };
+      const allTokens = [solToken, ...tokens].filter((t) => t.amount > 0.0001);
+      set({ balance, tokens: allTokens, txns });
     } catch (e: unknown) {
       const message = e instanceof Error ? e.message : "Unknown error";
       Alert.alert("Error", message);

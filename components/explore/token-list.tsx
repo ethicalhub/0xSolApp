@@ -1,6 +1,7 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { short } from "@/utils/format";
 import { colors, radius, spacing } from "@/constants/theme";
+import { useRouter } from "expo-router";
 import type { Token } from "@/types/solana";
 
 interface TokenListProps {
@@ -8,6 +9,8 @@ interface TokenListProps {
 }
 
 export function TokenList({ tokens }: TokenListProps) {
+  const router = useRouter();
+
   if (tokens.length === 0) return null;
 
   return (
@@ -18,10 +21,14 @@ export function TokenList({ tokens }: TokenListProps) {
         keyExtractor={(t) => t.mint}
         scrollEnabled={false}
         renderItem={({ item }) => (
-          <View style={s.row}>
+          <TouchableOpacity
+            style={s.row}
+            activeOpacity={0.7}
+            onPress={() => router.push(`/token/${item.mint}?amount=${item.amount}`)}
+          >
             <Text style={s.mint}>{short(item.mint, 6)}</Text>
             <Text style={s.amount}>{item.amount}</Text>
-          </View>
+          </TouchableOpacity>
         )}
       />
     </>

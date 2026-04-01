@@ -22,9 +22,10 @@ Most Web3 tutorials are either too shallow or too complex. This is a ground-up b
 
 ## Build in Public Log
 
-| Day | Topic                    | Notes                            |
-| --- | ------------------------ | -------------------------------- |
-| 01  | Project setup + Basic UI | [docs/day-01.md](docs/day-01.md) |
+| Day | Topic                                              | Notes                            | Preview |
+| --- | -------------------------------------------------- | -------------------------------- | ------- |
+| 01  | Project setup + Basic UI                           | [docs/day-01.md](docs/day-01.md) | —       |
+| 02  | Navigation, Swap UI, Token Details + DexScreener   | [docs/day-02.md](docs/day-02.md) | <img src="assets/docs/day2.jpg" width="120" /> <img src="assets/docs/day2_1.jpg" width="120" /> |
 
 ---
 
@@ -52,8 +53,10 @@ Simple, layered, and easy to extend.
 
 ## Current Features
 
-- Enter a Solana wallet address via a text input
-- Clean UI built with `SafeAreaView`, `ScrollView`, and `TextInput`
+- Enter a Solana wallet address to view balance, tokens, and transactions
+- Tap any token to open a live Token Details page (price, market cap, holdings) via DexScreener
+- Swap screen with token picker, amount input, and flip button
+- Bottom tab navigation (Explore + Swap)
 
 ---
 
@@ -85,7 +88,13 @@ Then open the app in:
 
 - [x] Project setup
 - [x] Basic UI with wallet input
-- [x] Fetch wallet balance via RPC
+- [x] Fetch wallet balance, tokens, and transactions via RPC
+- [x] Bottom tab navigation
+- [x] Token Details page with live DexScreener data
+- [x] Swap UI with token picker
+- [ ] Live token prices in Swap screen
+- [ ] Transaction confirmation sheet
+- [ ] Portfolio view
 
 ---
 
