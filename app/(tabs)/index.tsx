@@ -1,13 +1,13 @@
-import { ScrollView, StyleSheet, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useWalletStore } from "@/stores/wallet-store";
-import { SearchBar } from "@/components/search-bar";
 import { BalanceCard } from "@/components/balance-card";
+import { SearchBar } from "@/components/search-bar";
 import { TokenList } from "@/components/token-list";
 import { TransactionList } from "@/components/transaction-list";
 import { colors, spacing } from "@/constants/theme";
+import { useWalletStore } from "@/stores/wallet-store";
+import { ScrollView, StyleSheet, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Index() {
+export default function ExploreScreen() {
   const { publicKey, setPublicKey, balance, tokens, txns, loading, search } =
     useWalletStore();
 
