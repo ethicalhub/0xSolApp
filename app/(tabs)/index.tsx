@@ -1,7 +1,8 @@
-import { BalanceCard } from "@/components/balance-card";
-import { SearchBar } from "@/components/search-bar";
-import { TokenList } from "@/components/token-list";
-import { TransactionList } from "@/components/transaction-list";
+import { BalanceCard } from "@/components/explore/balance-card";
+import { SearchBar } from "@/components/explore/search-bar";
+import { TokenList } from "@/components/explore/token-list";
+import { TransactionList } from "@/components/explore/transaction-list";
+import { shared } from "@/constants/styles";
 import { colors, spacing } from "@/constants/theme";
 import { useWalletStore } from "@/stores/wallet-store";
 import { ScrollView, StyleSheet, Text } from "react-native";
@@ -12,9 +13,9 @@ export default function ExploreScreen() {
     useWalletStore();
 
   return (
-    <SafeAreaView style={s.safe}>
-      <ScrollView style={s.scroll}>
-        <Text style={s.title}>0xSol</Text>
+    <SafeAreaView style={shared.safe}>
+      <ScrollView style={shared.screenContainer}>
+        <Text style={shared.screenTitle}>0xSol</Text>
         <Text style={s.subtitle}>
           Enter a solana address to view more details...
         </Text>
@@ -38,22 +39,6 @@ export default function ExploreScreen() {
 }
 
 const s = StyleSheet.create({
-  safe: {
-    flex: 1,
-    backgroundColor: colors.bg,
-  },
-  scroll: {
-    flex: 1,
-    paddingHorizontal: spacing.xl,
-    paddingTop: spacing.lg,
-  },
-  title: {
-    color: colors.white,
-    fontSize: 32,
-    fontWeight: "700",
-    marginBottom: spacing.sm,
-    letterSpacing: -0.5,
-  },
   subtitle: {
     color: colors.gray,
     fontSize: 15,
