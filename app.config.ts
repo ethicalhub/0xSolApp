@@ -48,5 +48,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   extra: {
     solRpcUrl:
       process.env.SOL_RPC_URL ?? "https://api.mainnet-beta.solana.com",
+    solDevnetRpcUrl:
+      process.env.SOL_DEVNET_RPC_URL ?? "https://api.devnet.solana.com",
   },
 });

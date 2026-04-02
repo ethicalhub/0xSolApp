@@ -1,15 +1,21 @@
 import Constants from "expo-constants";
 import type { RpcResponse } from "@/types/solana";
 
-const SOL_RPC_URL =
+const MAINNET_URL =
   (Constants.expoConfig?.extra?.solRpcUrl as string) ??
   "https://api.mainnet-beta.solana.com";
+
+const DEVNET_URL =
+  (Constants.expoConfig?.extra?.solDevnetRpcUrl as string) ??
+  "https://api.devnet.solana.com";
 
 export const rpcCall = async <T>(
   method: string,
   params: unknown[],
+  isDevnet = false,
 ): Promise<T> => {
-  const response = await fetch(SOL_RPC_URL, {
+  const url = isDevnet ? DEVNET_URL : MAINNET_URL;
+  const response = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

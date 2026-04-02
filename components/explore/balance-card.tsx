@@ -1,6 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { short } from "@/utils/format";
 import { colors, radius, spacing } from "@/constants/theme";
+import { useSettingsStore } from "@/stores/settings-store";
 
 interface BalanceCardProps {
   balance: number;
@@ -8,8 +10,23 @@ interface BalanceCardProps {
 }
 
 export function BalanceCard({ balance, address }: BalanceCardProps) {
+  const favorited = useSettingsStore((s) => s.favorites.includes(address));
+  const { addFavorite, removeFavorite } = useSettingsStore();
+
   return (
     <View style={s.card}>
+      <TouchableOpacity
+        style={s.heartBtn}
+        onPress={() =>
+          favorited ? removeFavorite(address) : addFavorite(address)
+        }
+      >
+        <Ionicons
+          name={favorited ? "heart" : "heart-outline"}
+          size={22}
+          color={favorited ? colors.red : colors.gray}
+        />
+      </TouchableOpacity>
       <Text style={s.label}>SOL Balance</Text>
       <Text style={s.balance}>{balance.toFixed(4)}</Text>
       <Text style={s.sol}>SOL</Text>
@@ -57,5 +74,11 @@ const s = StyleSheet.create({
     paddingVertical: 6,
     borderRadius: radius.sm,
     overflow: "hidden",
+  },
+  heartBtn: {
+    position: "absolute",
+    top: spacing.md,
+    right: spacing.md,
+    padding: spacing.xs,
   },
 });

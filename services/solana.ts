@@ -29,15 +29,16 @@ interface SignatureInfo {
   err: unknown;
 }
 
-export const getBalance = async (publicKey: string): Promise<number> => {
-  const result = await rpcCall<BalanceResult>("getBalance", [publicKey]);
+export const getBalance = async (publicKey: string, isDevnet = false): Promise<number> => {
+  const result = await rpcCall<BalanceResult>("getBalance", [publicKey], isDevnet);
   return result.value / LAMPORTS_PER_SOL;
 };
 
-export const getTokens = async (publicKey: string): Promise<Token[]> => {
+export const getTokens = async (publicKey: string, isDevnet = false): Promise<Token[]> => {
   const result = await rpcCall<TokenAccountResult>(
     "getTokenAccountsByOwner",
     [publicKey, { programId: TOKEN_PROGRAM_ID }, { encoding: "jsonParsed" }],
+    isDevnet,
   );
 
   return result.value
@@ -48,11 +49,11 @@ export const getTokens = async (publicKey: string): Promise<Token[]> => {
     .filter((token) => token.amount > 0);
 };
 
-export const getTxns = async (publicKey: string): Promise<Transaction[]> => {
+export const getTxns = async (publicKey: string, isDevnet = false): Promise<Transaction[]> => {
   const sigs = await rpcCall<SignatureInfo[]>("getSignaturesForAddress", [
     publicKey,
     { limit: 10 },
-  ]);
+  ], isDevnet);
 
   return sigs.map((s) => ({
     sig: s.signature,

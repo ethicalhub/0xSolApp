@@ -79,11 +79,7 @@ const s = StyleSheet.create({
     borderRadius: radius.md,
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: colors.green,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
-    elevation: 8,
+    boxShadow: "0px 4px 12px rgba(20, 241, 149, 0.3)",
   },
   btnDisabled: {
     opacity: 0.6,
