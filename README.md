@@ -26,6 +26,7 @@ Most Web3 tutorials are either too shallow or too complex. This is a ground-up b
 | --- | -------------------------------------------------- | -------------------------------- | ------- |
 | 01  | Project setup + Basic UI                           | [docs/day-01.md](docs/day-01.md) | —       |
 | 02  | Navigation, Swap UI, Token Details + DexScreener   | [docs/day-02.md](docs/day-02.md) | <img src="assets/docs/day2.jpg" width="120" /> <img src="assets/docs/day2_1.jpg" width="120" /> |
+| 03  | Settings tab, Favorites, Search History & Devnet   | [docs/day-03.md](docs/day-03.md) | <img src="assets/docs/day3.jpg" width="120" /> <img src="assets/docs/day3_2.jpg" width="120" /> |
 
 ---
 
@@ -56,7 +57,11 @@ Simple, layered, and easy to extend.
 - Enter a Solana wallet address to view balance, tokens, and transactions
 - Tap any token to open a live Token Details page (price, market cap, holdings) via DexScreener
 - Swap screen with token picker, amount input, and flip button
-- Bottom tab navigation (Explore + Swap)
+- Bottom tab navigation (Explore, Swap, Settings)
+- Save wallets to favorites with a heart icon on the balance card
+- Search history — auto-populated, tap any entry to re-search
+- Devnet toggle — switch between mainnet and devnet in one tap
+- All preferences persisted across app restarts via AsyncStorage
 
 ---
 
@@ -92,6 +97,8 @@ Then open the app in:
 - [x] Bottom tab navigation
 - [x] Token Details page with live DexScreener data
 - [x] Swap UI with token picker
+- [x] Settings tab with favorites, search history, and devnet toggle
+- [x] AsyncStorage persistence for user preferences
 - [ ] Live token prices in Swap screen
 - [ ] Transaction confirmation sheet
 - [ ] Portfolio view
@@ -100,9 +107,11 @@ Then open the app in:
 
 ## Notes
 
-- RPC endpoint is configured via `app.config.ts` using `SOL_RPC_URL`
+- Mainnet RPC endpoint is configured via `SOL_RPC_URL` in `.env`
+- Devnet RPC endpoint is configured via `SOL_DEVNET_RPC_URL` in `.env`
 - This project uses Expo Router for file-based navigation
-- State management is handled by Zustand
+- State management is handled by Zustand (wallet-store, swap-store, settings-store)
+- User preferences (favorites, history, network) are persisted via AsyncStorage
 
 ---
 
