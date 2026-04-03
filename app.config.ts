@@ -1,4 +1,4 @@
-import { ExpoConfig, ConfigContext } from "expo/config";
+import { ConfigContext, ExpoConfig } from "expo/config";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
@@ -14,6 +14,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     supportsTablet: true,
   },
   android: {
+    package: "com.x0xsolapp",
     adaptiveIcon: {
       backgroundColor: "#E6F4FE",
       foregroundImage: "./assets/images/android-icon-foreground.png",
@@ -46,8 +47,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     reactCompiler: true,
   },
   extra: {
-    solRpcUrl:
-      process.env.SOL_RPC_URL ?? "https://api.mainnet-beta.solana.com",
+    solRpcUrl: process.env.SOL_RPC_URL ?? "https://api.mainnet-beta.solana.com",
     solDevnetRpcUrl:
       process.env.SOL_DEVNET_RPC_URL ?? "https://api.devnet.solana.com",
   },
