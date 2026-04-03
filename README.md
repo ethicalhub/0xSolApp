@@ -27,6 +27,7 @@ Most Web3 tutorials are either too shallow or too complex. This is a ground-up b
 | 01  | Project setup + Basic UI                           | [docs/day-01.md](docs/day-01.md) | —       |
 | 02  | Navigation, Swap UI, Token Details + DexScreener   | [docs/day-02.md](docs/day-02.md) | <img src="assets/docs/day2.jpg" width="120" /> <img src="assets/docs/day2_1.jpg" width="120" /> |
 | 03  | Settings tab, Favorites, Search History & Devnet   | [docs/day-03.md](docs/day-03.md) | <img src="assets/docs/day3.jpg" width="120" /> <img src="assets/docs/day3_2.jpg" width="120" /> |
+| 04  | Android native build & physical device setup        | [docs/day-04.md](docs/day-04.md) | —       |
 
 ---
 
@@ -37,7 +38,7 @@ Most Web3 tutorials are either too shallow or too complex. This is a ground-up b
 | Framework  | React Native (Expo)            |
 | Language   | TypeScript                     |
 | State      | Zustand                        |
-| Blockchain | Solana Web3.js _(coming soon)_ |
+| Blockchain | Solana Web3.js                 |
 | Navigation | Expo Router                    |
 
 ---
@@ -99,6 +100,8 @@ Then open the app in:
 - [x] Swap UI with token picker
 - [x] Settings tab with favorites, search history, and devnet toggle
 - [x] AsyncStorage persistence for user preferences
+- [x] Android native build with physical device support (custom dev client)
+- [ ] Solana Mobile Wallet Adapter (MWA) integration
 - [ ] Live token prices in Swap screen
 - [ ] Transaction confirmation sheet
 - [ ] Portfolio view
