@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import {
   transact,
   Web3MobileWallet,
@@ -15,14 +15,14 @@ const APP_IDENTITY = {
 };
 
 export function useWallet() {
-  const [connectedPubkey, setConnectedPubkey] = useState<string | null>(null);
-  const [connecting, setConnecting] = useState(false);
+  const connectedPubkey = useWalletStore((s) => s.connectedPubkey);
+  const connecting = useWalletStore((s) => s.connecting);
 
   const isDevnet = useSettingsStore((s) => s.isDevnet);
   const cluster = isDevnet ? "devnet" : "mainnet-beta";
 
   const connect = useCallback(async () => {
-    setConnecting(true);
+    useWalletStore.getState().setConnecting(true);
     try {
       const authResult = await transact(
         async (wallet: Web3MobileWallet) => {
@@ -39,7 +39,7 @@ export function useWallet() {
       );
       const base58 = pubkey.toBase58();
 
-      setConnectedPubkey(base58);
+      useWalletStore.getState().setConnectedPubkey(base58);
       useWalletStore.getState().setPublicKey(base58);
       useWalletStore.getState().search();
 
@@ -48,13 +48,14 @@ export function useWallet() {
       console.error("Wallet connect failed:", error);
       throw error;
     } finally {
-      setConnecting(false);
+      useWalletStore.getState().setConnecting(false);
     }
   }, [cluster]);
 
   const disconnect = useCallback(() => {
-    setConnectedPubkey(null);
     useWalletStore.setState({
+      connectedPubkey: null,
+      connecting: false,
       publicKey: "",
       balance: null,
       tokens: [],

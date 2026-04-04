@@ -11,7 +11,11 @@ interface WalletState {
   tokens: Token[];
   txns: Transaction[];
   loading: boolean;
+  connectedPubkey: string | null;
+  connecting: boolean;
   setPublicKey: (key: string) => void;
+  setConnectedPubkey: (key: string | null) => void;
+  setConnecting: (val: boolean) => void;
   search: () => Promise<void>;
 }
 
@@ -21,8 +25,12 @@ export const useWalletStore = create<WalletState>((set, get) => ({
   tokens: [],
   txns: [],
   loading: false,
+  connectedPubkey: null,
+  connecting: false,
 
   setPublicKey: (key) => set({ publicKey: key }),
+  setConnectedPubkey: (key) => set({ connectedPubkey: key }),
+  setConnecting: (val) => set({ connecting: val }),
 
   search: async () => {
     const addr = get().publicKey.trim();

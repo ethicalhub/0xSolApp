@@ -28,6 +28,7 @@ Most Web3 tutorials are either too shallow or too complex. This is a ground-up b
 | 02  | Navigation, Swap UI, Token Details + DexScreener   | [docs/day-02.md](docs/day-02.md) | <img src="assets/docs/day2.jpg" width="120" /> <img src="assets/docs/day2_1.jpg" width="120" /> |
 | 03  | Settings tab, Favorites, Search History & Devnet   | [docs/day-03.md](docs/day-03.md) | <img src="assets/docs/day3.jpg" width="120" /> <img src="assets/docs/day3_2.jpg" width="120" /> |
 | 04  | Android native build & physical device setup        | [docs/day-04.md](docs/day-04.md) | —       |
+| 05  | Wallet connect via Mobile Wallet Adapter             | [docs/day-05.md](docs/day-05.md) | —       |
 
 ---
 
@@ -39,6 +40,7 @@ Most Web3 tutorials are either too shallow or too complex. This is a ground-up b
 | Language   | TypeScript                     |
 | State      | Zustand                        |
 | Blockchain | Solana Web3.js                 |
+| Wallet     | Solana Mobile Wallet Adapter   |
 | Navigation | Expo Router                    |
 
 ---
@@ -56,6 +58,8 @@ Simple, layered, and easy to extend.
 ## Current Features
 
 - Enter a Solana wallet address to view balance, tokens, and transactions
+- **Connect Phantom wallet** via Mobile Wallet Adapter — auto-loads balance, tokens, and txns
+- Connected wallet state synced across Explore and Settings screens
 - Tap any token to open a live Token Details page (price, market cap, holdings) via DexScreener
 - Swap screen with token picker, amount input, and flip button
 - Bottom tab navigation (Explore, Swap, Settings)
@@ -101,7 +105,8 @@ Then open the app in:
 - [x] Settings tab with favorites, search history, and devnet toggle
 - [x] AsyncStorage persistence for user preferences
 - [x] Android native build with physical device support (custom dev client)
-- [ ] Solana Mobile Wallet Adapter (MWA) integration
+- [x] Solana Mobile Wallet Adapter (MWA) integration
+- [ ] Send SOL transactions via Phantom signing
 - [ ] Live token prices in Swap screen
 - [ ] Transaction confirmation sheet
 - [ ] Portfolio view
