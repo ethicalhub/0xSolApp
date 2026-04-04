@@ -1,5 +1,6 @@
 import { colors } from "@/constants/theme";
 import { Stack } from "expo-router";
+import "../lib/polyfills";
 
 export default function RootLayout() {
   return (

@@ -13,12 +13,15 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { shared } from "@/constants/styles";
 import { colors, radius, spacing } from "@/constants/theme";
+import { useWallet } from "@/hooks/useWallet";
 import { useSettingsStore } from "@/stores/settings-store";
 
 export default function SettingsScreen() {
   const router = useRouter();
   const { isDevnet, toggleNetwork, favorites, searchHistory, clearHistory } =
     useSettingsStore();
+  const { connectedPubkey, connected, connecting, connect, disconnect } =
+    useWallet();
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
@@ -45,6 +48,56 @@ export default function SettingsScreen() {
       <ScrollView style={shared.screenContainer}>
         <Text style={shared.screenTitle}>Settings</Text>
         <Text style={s.subtitle}>Configure your wallet explorer</Text>
+
+        {/* CONNECTED WALLET */}
+        <Text style={s.sectionLabel}>CONNECTED WALLET</Text>
+        <View style={shared.card}>
+          {connected && connectedPubkey ? (
+            <View>
+              <View style={shared.spaceBetween}>
+                <View style={shared.row}>
+                  <Ionicons
+                    name="wallet"
+                    size={18}
+                    color={colors.green}
+                    style={s.icon}
+                  />
+                  <View>
+                    <Text style={s.rowTitle}>Phantom</Text>
+                    <Text style={s.walletAddress}>
+                      {connectedPubkey.slice(0, 8)}...{connectedPubkey.slice(-8)}
+                    </Text>
+                  </View>
+                </View>
+                <TouchableOpacity onPress={disconnect} style={s.disconnectBtn}>
+                  <Text style={s.disconnectText}>Disconnect</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          ) : (
+            <TouchableOpacity
+              style={shared.spaceBetween}
+              onPress={connect}
+              disabled={connecting}
+            >
+              <View style={shared.row}>
+                <Ionicons
+                  name="wallet-outline"
+                  size={18}
+                  color={colors.gray}
+                  style={s.icon}
+                />
+                <View>
+                  <Text style={s.rowTitle}>
+                    {connecting ? "Connecting..." : "No wallet connected"}
+                  </Text>
+                  <Text style={s.rowSub}>Tap to connect Phantom</Text>
+                </View>
+              </View>
+              <Ionicons name="chevron-forward" size={16} color={colors.gray} />
+            </TouchableOpacity>
+          )}
+        </View>
 
         {/* NETWORK */}
         <Text style={s.sectionLabel}>NETWORK</Text>
@@ -185,6 +238,24 @@ const s = StyleSheet.create({
   dangerText: {
     color: colors.red,
     fontSize: 15,
+    fontWeight: "600",
+  },
+  walletAddress: {
+    color: colors.green,
+    fontSize: 12,
+    fontFamily: "monospace",
+    marginTop: 2,
+  },
+  disconnectBtn: {
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.xs,
+    borderRadius: radius.sm,
+    borderWidth: 1,
+    borderColor: colors.red,
+  },
+  disconnectText: {
+    color: colors.red,
+    fontSize: 12,
     fontWeight: "600",
   },
 });
